@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARK VIBE OFFICIAL | Premium V2ray</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap');
+
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff007b;
+            --vip-gold: #ffcc00;
+            --bg-deep: #030303;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #e0e0e0;
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation Layer */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: black;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid var(--neon-blue);
+            position: sticky;
+            top: 0; z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .nav-left img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--neon-blue); }
+        .nav-logo-text { font-family: 'Orbitron'; font-size: 1.4rem; color: #fff; text-shadow: 0 0 10px var(--neon-blue); }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { 
+            color: white; 
+            text-decoration: none; 
+            font-family: 'Orbitron'; 
+            font-size: 0.8rem; 
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
+
+        /* Scrolling Notice Bar */
+        .notice-bar {
+            background: rgba(255, 0, 123, 0.15);
+            color: white;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 123, 0.3);
+            overflow: hidden;
+            position: relative;
+            z-index: 999;
+        }
+
+        .notice-title {
+            background: var(--neon-pink);
+            padding: 0 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            z-index: 2;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            height: 100%;
+            position: absolute;
+        }
+
+        .notice-content {
+            white-space: nowrap;
+            display: inline-block;
+            animation: scroll-text 20s linear infinite;
+            padding-left: 100%;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        @keyframes scroll-text {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Header */
+        header { text-align: center; padding: 60px 20px; }
+        .glitch-text {
+            font-family: 'Orbitron';
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            position: relative;
+            display: inline-block;
+            animation: glitch-fx 3s infinite;
+        }
+
+        @keyframes glitch-fx {
+            0% { text-shadow: 2px 0 var(--neon-pink); }
+            50% { text-shadow: -2px 0 var(--neon-blue); }
+            100% { text-shadow: 2px 0 var(--neon-pink); }
+        }
+
+        /* About Section */
+        #about {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            border: 1px solid #222;
+            backdrop-filter: blur(5px);
+        }
+        #about h2 { color: var(--neon-blue); margin-bottom: 15px; font-family: 'Orbitron'; }
+        #about p { font-size: 1.1rem; line-height: 1.8; color: #ccc; }
+
+        /* Working Packages */
+        .pkg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .pkg-card {
+            background: rgba(17, 17, 17, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+            font-weight: bold;
+        }
+
+        /* Price Boxes */
+        .price-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+        }
+        .box {
+            background: rgba(10, 10, 10, 0.9);
+            width: 350px;
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: 0.5s;
+            position: relative;
+        }
+        .box:hover { transform: translateY(-15px); border-color: var(--neon-blue); }
+
+        .vip-box {
+            border: 2px solid var(--vip-gold);
+            box-shadow: 0 0 30px rgba(255, 204, 0, 0.1);
+            overflow: hidden;
+        }
+        .vip-box::after {
+            content: "BEST VALUE";
+            position: absolute; top: 15px; right: -35px;
+            background: var(--vip-gold); color: #000;
+            padding: 5px 40px; transform: rotate(45deg);
+            font-weight: bold; font-size: 0.7rem;
+            font-family: 'Orbitron';
+        }
+
+        .box h2 { font-family: 'Orbitron'; margin-bottom: 20px; }
+        .price-tag { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; }
+        .box ul { list-style: none; text-align: left; margin-bottom: 30px; }
+        .box li { padding: 8px 0; border-bottom: 1px solid #1a1a1a; font-size: 0.9rem; }
+        .box li i { margin-right: 10px; color: var(--neon-blue); }
+
+        .buy-btn {
+            display: block;
+            padding: 15px;
+            background: var(--neon-blue);
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+        .vip-btn { background: var(--vip-gold); }
+
+        /* Contact Section */
+        #contact { text-align: center; padding: 60px 20px; }
+        .tg-large-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background: #0088cc;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4);
+            transition: 0.3s;
+        }
+
+        footer { text-align: center; padding: 40px; opacity: 0.4; font-size: 0.8rem; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <audio id="bgMusic" loop preload="auto">
+        <source src="3.mp3" type="audio/mpeg">
+    </audio>
+
+    <nav>
+        <div class="nav-left">
+            <img src="1.jpg" alt="DV">
+            <div class="nav-logo-text">DARK VIBE</div>
+        </div>
+        <div class="nav-links">
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <a href="#paid-servers">PAID SERVERS</a>
+        </div>
+    </nav>
+
+    <div class="notice-bar">
+        <div class="notice-title">
+            <i class="fas fa-bullhorn" style="margin-right: 8px;"></i> NEWS
+        </div>
+        <div class="notice-content">
+            අතිවේගී Premium V2ray සේවාව ලබාගැනීම සඳහා පහත ඇති පැකේජ් පරීක්ෂා කරන්න. සියලුම ජාලයන් සඳහා විශ්වාසදායක සේවාවක් දැන් අපෙන්.. [DARK VIBE OFFICIAL]
+        </div>
+    </div>
+
+    <header>
+        <div class="glitch-text">DARK VIBE OFFICIAL</div>
+    </header>
+
+    <section id="about">
+        <h2><i class="fas fa-bolt"></i> Why Choose Dark Vibe Paid V2ray?</h2>
+        <p>අපගේ <b>Paid V2ray</b> සේවාව සාමාන්‍ය නොමිලේ ලැබෙන සේවා වලට වඩා සිය දහස් ගුණයකින් ඉදිරියෙන් සිටී. අපි භාවිතා කරන්නේ ලොව වේගවත්ම සර්වර් තාක්ෂණයයි. ඔබේ සීමිත සමාජ මාධ්‍ය පැකේජය හරහා කිසිදු බාධාවකින් තොරව High-Quality වීඩියෝ නැරඹීමට, Online Games (Low Ping) ගැසීමට සහ අධිවේගී ලෙස Files Download කිරීමට අපගේ සේවාව මගින් ඔබට අවස්ථාව ලැබේ.</p>
+        <p style="margin-top: 15px;">* සීමිත පිරිසකට පමණක් අවස්ථාව ලබාදෙන බැවින් සර්වර් වේගය උපරිම මට්ටමේ පවතී. නොමිලේ ලබාදෙන configurations ද අපගේ චැනලය හරහා ලබාගත හැක.</p>
+    </section>
+
+    <h3 style="text-align: center; margin-top: 40px; font-family: 'Orbitron'; color: var(--neon-pink);">WORKING PACKAGES</h3>
+    <div class="pkg-grid">
+        <div class="pkg-card">SLT Zoom</div>
+        <div class="pkg-card">SLT Netflix</div>
+        <div class="pkg-card">Airtel 260</div>
+        <div class="pkg-card">Airtel 135</div>
+        <div class="pkg-card">Airtel 997</div>
+        <div class="pkg-card">Dialog 724</div>
+        <div class="pkg-card">Dialog 348</div>
+        <div class="pkg-card">Mobitel Zoom</div>
+    </div>
+
+    <div class="price-container" id="paid-servers">
+        <div class="box">
+            <h2>100GB</h2>
+            <div class="price-tag">Rs. 150</div>
+            <ul>
+                <li><i class="fas fa-check"></i> High Speed V2ray</li>
+                <li><i class="fas fa-check"></i> All ISP Support</li>
+                <li><i class="fas fa-check"></i> 30 Days Validity</li>
+                <li><i class="fas fa-check"></i> 100GB Bandwidth</li>
+            </ul>
+            <a href="https://t.me/Darkvibevp_n" class="buy-btn">BUY NOW</a>
+        </div>
+
+        <div class="box vip-box">
+            <h2 style="color: var(--vip-gold);">UNLIMITED GB</h2>
+            <div class="price-tag" style="color: var(--vip-gold);">Rs. 300</div>
+            <ul>
+                <li><i class="fas fa-star"></i> VIP Private Server</li>
+                <li><i class="fas fa-star"></i> No Data Limits</li>
+                <li><i class="fas fa-star"></i> Ultra Low Ping for Gaming</li>
+                <li><i class="fas fa-star"></i> Dedicated VIP Support</li>
+            </ul>
+            <a href="https://t.me/Darkvibevp_n" class="buy-btn vip-btn">GET VIP ACCESS</a>
+        </div>
+    </div>
+
+    <div id="contact">
+        <p style="margin-bottom: 20px; font-weight: bold;">JOIN OUR COMMUNITY FOR FREE CONFIGS</p>
+        <a href="https://t.me/Darkvibevpn1" class="tg-large-btn">
+            <i class="fab fa-telegram"></i> JOIN TELEGRAM CHANNEL
+        </a>
+    </div>
+
+    <footer>
+        ALL RIGHTS RESERVED &copy; 2026 DARK VIBE OFFICIAL
+    </footer>
+
+    <script>
+        // --- Advanced Music Autoplay Script ---
+        const audio = document.getElementById('bgMusic');
+
+        function attemptPlay() {
+            audio.play().then(() => {
+                // Autoplay started successfully
+                console.log("Music started");
+            }).catch(error => {
+                // Blocked by browser, wait for user interaction
+                console.log("Autoplay blocked, waiting for interaction");
+            });
+        }
+
+        // Try playing on load
+        window.addEventListener('load', attemptPlay);
+
+        // Try playing on any interaction (Scroll, Click, Touch, Mouse Move)
+        const events = ['click', 'scroll', 'touchstart', 'mousemove', 'keydown'];
+        events.forEach(event => {
+            window.addEventListener(event, attemptPlay, { once: true });
+        });
+
+        // --- Star Background Animation ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = [];
+
+        function init() {
+            stars = [];
+            for (let i = 0; i < 150; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2,
+                    speed: Math.random() * 0.5
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) star.y = 0;
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        init();
+        animate();
+    </script>
+</body>
+</html>
